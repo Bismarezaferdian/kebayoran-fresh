@@ -10,8 +10,7 @@ import Slider from "@/components/landingpage/Slider";
 export default function Home() {
   return (
     <div className="">
-      <Notification />
-      <Navbar />
+      {/* <Notification /> */}
       <Slider />
       <Featured />
       <Banner />
