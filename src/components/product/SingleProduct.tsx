@@ -47,8 +47,9 @@ const SingleProduct = () => {
                         <p className='flex justify-center px-4 border-none items-center rounded-md bg-green-200 mx-2'>2</p>
                         <button className='px-3 border  text-gray-900 rounded-md'>+</button>
                     </div>
-                    <div className="">
+                    <div className=" flex gap-4">
                         <button className='px-4 py-3 bg-green-500 text-slate-50 rounded-md'>Masukan Keranjang</button>
+                        <button className='px-4 py-3  text-slate-900 border border-green-500 rounded-md'>Beli Langsung</button>
                     </div>
                 </div>
             </div>

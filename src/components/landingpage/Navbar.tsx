@@ -23,18 +23,18 @@ const Navbar = () => {
         <NavLinks />
       </div>
 
-      <div className="flex gap-2 my-4 md:m-0 md:w-1/6 items-center">
+      <div className="flex justify-between gap-2 my-4 md:m-0 md:w-1/6 items-center w-full">
         <input
           placeholder="Search"
           className="bg-gray-300 rounded-full w-full h-8 px-4"
         />
-        <div className="flex gap-2">
+        <div className="flex gap-4">
           {/* <ShoppingCartIcon className="w-6 h-6" /> */}
           <Link href={"/cart"}>
-            <FaCartShopping />
+            <FaCartShopping className="text-xl" />
           </Link>
           {/* <UserIcon className="w-6 h-6" /> */}
-          <FaUser />
+          <FaUser className=" md:flex hidden text-xl " />
 
         </div>
       </div>

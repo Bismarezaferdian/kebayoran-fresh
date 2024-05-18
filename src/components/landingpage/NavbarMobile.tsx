@@ -21,7 +21,7 @@ const NavbarMobile = () => {
                 <Link href={"/product"}>
                     <div className="flex flex-col justify-center items-center text-center">
                         <IoIosCube
-                            className={`h-6 w-6 ${path == "/products" ? "text-green-600" : "text-gray-900"
+                            className={`h-6 w-6 ${path == "/product" ? "text-green-600" : "text-gray-900"
                                 }`}
                         />
                         <span className="text-xs ">Products</span>
