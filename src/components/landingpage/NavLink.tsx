@@ -18,9 +18,9 @@ const NavLinks = () => {
                 </div>
                 <div className="relative">
                     <button className=" text-slate-500">
-                        <Link href="/products">Product</Link>
+                        <Link href="/product">Product</Link>
                     </button>
-                    {path == "/products" && (
+                    {path == "/product" && (
                         <motion.div className="underline" layoutId="underline" />
                     )}
                 </div>

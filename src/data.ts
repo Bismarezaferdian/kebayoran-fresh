@@ -15,6 +15,7 @@ type ProductType = {
     desc?: string,
     img: string,
     price: number,
+    weight?: number,
     category: String,
     option?: { title: string, price: number }[],
 }
@@ -54,13 +55,15 @@ export const bannerSlider: Banners = [
 
 export type Products = ProductType[]
 
-export const ProductDisplay: Products = [
+export const ProductCarts: Products = [
     {
         id: 1,
         category: "vegetables",
+        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. In quibusdam similique, quod excepturi aperiam deleniti dolor ex qui voluptatibus adipisci. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos dolore enim quos voluptas, ad voluptatibus eveniet beatae iste debitis explicabo.",
         title: "Ayam Potong Segar",
         img: "/product/ayam.jpeg",
         price: 12000,
+        weight: 250,
         option: [
             {
                 title: "250 gr",
@@ -87,6 +90,7 @@ export const ProductDisplay: Products = [
         title: "Bawang Putih",
         img: "/product/bawangWhite.jpeg",
         price: 11000,
+        weight: 250,
         option: [
             {
                 title: "250 gr",
@@ -113,6 +117,88 @@ export const ProductDisplay: Products = [
         title: "Bayam ",
         img: "/product/bayam.jpeg",
         price: 12000,
+        weight: 250,
+        option: [
+            {
+                title: "100 gr",
+                price: 3000,
+            },
+            {
+                title: "200 gr",
+                price: 6000,
+            },
+            {
+                title: "300 gr",
+                price: 12000,
+            }
+        ]
+
+    },
+]
+
+export const ProductDisplay: Products = [
+    {
+        id: 1,
+        category: "vegetables",
+        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. In quibusdam similique, quod excepturi aperiam deleniti dolor ex qui voluptatibus adipisci. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos dolore enim quos voluptas, ad voluptatibus eveniet beatae iste debitis explicabo.",
+        title: "Ayam Potong Segar",
+        img: "/product/ayam.jpeg",
+        price: 12000,
+        weight: 250,
+        option: [
+            {
+                title: "250 gr",
+                price: 12000,
+            },
+            {
+                title: "500 gr",
+                price: 24000,
+            },
+            {
+                title: "750 gr",
+                price: 36000,
+            },
+            {
+                title: "1000 gr",
+                price: 48000,
+            },
+        ]
+
+    },
+    {
+        id: 2,
+        category: "vegetables",
+        title: "Bawang Putih",
+        img: "/product/bawangWhite.jpeg",
+        price: 11000,
+        weight: 250,
+        option: [
+            {
+                title: "250 gr",
+                price: 11000,
+            },
+            {
+                title: "500 gr",
+                price: 22000,
+            },
+            {
+                title: "750 gr",
+                price: 33000,
+            },
+            {
+                title: "1000 gr",
+                price: 44000,
+            },
+        ]
+
+    },
+    {
+        id: 3,
+        category: "vegetables",
+        title: "Bayam ",
+        img: "/product/bayam.jpeg",
+        price: 12000,
+        weight: 250,
         option: [
             {
                 title: "100 gr",
@@ -135,6 +221,7 @@ export const ProductDisplay: Products = [
         title: "Bayam ",
         img: "/product/bombai.jpeg",
         price: 12000,
+        weight: 250,
         option: [
             {
                 title: "100 gr",
@@ -157,6 +244,7 @@ export const ProductDisplay: Products = [
         title: "Bayam ",
         img: "/product/bombai.jpeg",
         price: 12000,
+        weight: 250,
         option: [
             {
                 title: "100 gr",
@@ -172,7 +260,76 @@ export const ProductDisplay: Products = [
             }
         ]
 
-    }
+    },
+    {
+        id: 6,
+        category: "vegetables",
+        title: "Bayam ",
+        img: "/product/bombai.jpeg",
+        price: 12000,
+        weight: 250,
+        option: [
+            {
+                title: "100 gr",
+                price: 3000,
+            },
+            {
+                title: "200 gr",
+                price: 6000,
+            },
+            {
+                title: "300 gr",
+                price: 12000,
+            }
+        ]
+
+    },
+    {
+        id: 7,
+        category: "vegetables",
+        title: "Bayam ",
+        img: "/product/bombai.jpeg",
+        price: 12000,
+        weight: 250,
+        option: [
+            {
+                title: "100 gr",
+                price: 3000,
+            },
+            {
+                title: "200 gr",
+                price: 6000,
+            },
+            {
+                title: "300 gr",
+                price: 12000,
+            }
+        ]
+
+    },
+    {
+        id: 8,
+        category: "vegetables",
+        title: "Bayam ",
+        img: "/product/bombai.jpeg",
+        price: 12000,
+        weight: 250,
+        option: [
+            {
+                title: "100 gr",
+                price: 3000,
+            },
+            {
+                title: "200 gr",
+                price: 6000,
+            },
+            {
+                title: "300 gr",
+                price: 12000,
+            }
+        ]
+
+    },
 ]
 
 
@@ -183,6 +340,7 @@ export const featureProducts: Products = [
         title: "Ayam Potong Segar",
         img: "/product/ayam.jpeg",
         price: 12000,
+        weight: 250,
         option: [
             {
                 title: "250 gr",
@@ -275,6 +433,28 @@ export const featureProducts: Products = [
     },
     {
         id: 5,
+        category: "vegetables",
+        title: "Bayam ",
+        img: "/product/bombai.jpeg",
+        price: 12000,
+        option: [
+            {
+                title: "100 gr",
+                price: 3000,
+            },
+            {
+                title: "200 gr",
+                price: 6000,
+            },
+            {
+                title: "300 gr",
+                price: 12000,
+            }
+        ]
+
+    },
+    {
+        id: 6,
         category: "vegetables",
         title: "Bayam ",
         img: "/product/bombai.jpeg",

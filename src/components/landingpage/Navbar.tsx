@@ -1,8 +1,9 @@
-import {
-  ChartBarIcon,
-  ShoppingCartIcon,
-  UserIcon,
-} from "@heroicons/react/24/solid";
+// import {
+//   ChartBarIcon,
+//   ShoppingCartIcon,
+//   UserIcon,
+// } from "@heroicons/react/24/solid";
+import { FaCartShopping, FaUser } from "react-icons/fa6";
 import React from "react";
 import ThemeSwitcher from "@/components/darkmode/ThemeSwitcher";
 import Link from "next/link";
@@ -27,8 +28,13 @@ const Navbar = () => {
           className="bg-gray-300 rounded-full w-full h-8 px-4"
         />
         <div className="flex gap-2">
-          <ShoppingCartIcon className="w-6 h-6" />
-          <UserIcon className="w-6 h-6" />
+          {/* <ShoppingCartIcon className="w-6 h-6" /> */}
+          <Link href={"/cart"}>
+            <FaCartShopping />
+          </Link>
+          {/* <UserIcon className="w-6 h-6" /> */}
+          <FaUser />
+
         </div>
       </div>
       {/* </div> */}

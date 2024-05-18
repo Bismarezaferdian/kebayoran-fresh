@@ -45,7 +45,7 @@ const NewProducts = () => {
       <div className="">
         <Swiper
           loop={false}
-          slidesPerView={windowSize.width && windowSize.width < 640 ? 2.5 : 4.5}
+          slidesPerView={windowSize.width && windowSize.width < 640 ? 2.5 : 5.5}
           autoplay={{
             delay: 2200,
             disableOnInteraction: false,
@@ -57,7 +57,7 @@ const NewProducts = () => {
         >
           {featureProducts.map((item) => (
             <SwiperSlide key={item.id} cz-shortcut-listen="false">
-              <div className=" rounded-md text-center py-10 ">
+              <div className=" rounded-md text-center py-10 max-w-56 ">
                 {/* <div className="absolute bg-rose-500 translate-y-translate-x-6 w-36">12%</div> */}
                 <div className="flex  md:h-auto justify-center overflow-hidden rounded-md">
                   <Image
