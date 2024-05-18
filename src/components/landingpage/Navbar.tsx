@@ -8,6 +8,7 @@ import React from "react";
 import ThemeSwitcher from "@/components/darkmode/ThemeSwitcher";
 import Link from "next/link";
 import NavLinks from "./NavLink";
+import NavbarMobile from "./NavbarMobile";
 
 
 const Navbar = () => {
@@ -38,6 +39,9 @@ const Navbar = () => {
         </div>
       </div>
       {/* </div> */}
+      <div className="fixed bottom-0 h-fit pt-2 md:hidden w-screen bg-neutral-50 z-40">
+        <NavbarMobile />
+      </div>
     </div>
   );
 };

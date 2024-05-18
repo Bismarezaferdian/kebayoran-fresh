@@ -9,7 +9,7 @@ const Product = () => {
     return (
         <div className=' flex justify-center w-full gap-2 px-6' >
             {/* fillter */}
-            <div className="w-1/6 bg-slate-100" >filter
+            <div className="hidden md:flex w-1/6 bg-slate-100" >
                 <FilterProduct />
             </div>
             {/* product */}

@@ -3,8 +3,8 @@ import React from 'react'
 
 const FilterProduct = () => {
     return (
-        <div>
-            <div className="wrapp-kategory container overscroll-contain overflow-auto md:h-48 p-4">
+        <div >
+            <div className=" wrapp-kategory container overscroll-contain overflow-auto md:h-48 p-4">
                 {category.map((item) => (
                     <div className="flex items-center mb-4" key={item.id}>
                         <input

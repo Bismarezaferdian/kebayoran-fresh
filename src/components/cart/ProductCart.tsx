@@ -7,7 +7,7 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 
 const ProductCart = () => {
     return (
-        <div className=" md:container mx-auto md:px-6">
+        <div className=" md:container mx-auto p-2 md:px-6">
             {ProductCarts.map((item, i) => (
 
                 <div className='p-2 border-b-2 flex' key={i}>
@@ -41,19 +41,22 @@ const ProductCart = () => {
                 </div >
             ))}
             {/* amount */}
-            <div className="bg-green-100 w-full p-2">
+            <div className="bg-green-50 w-full py-4 px-2">
                 <div className="flex justify-end flex-col items-end gap-4">
-                    <div className="flex justify-between w-1/2">
+                    <div className="flex justify-between w-full md:w-1/2">
                         <p>Sub Total (3 item)</p>
                         <p>Rp.2000000</p>
                     </div>
-                    <div className="flex justify-between items-center w-1/2">
+                    <div className="flex justify-between items-center w-full md:w-1/2">
                         <p>biaya pengiriman</p>
                         <p>Free</p>
                     </div>
-                    <div className="flex justify-between items-center w-1/2">
+                    <div className="flex justify-between items-center w-full md:w-1/2">
                         <p>Total</p>
                         <p>Rp.2000000</p>
+                    </div>
+                    <div className="flex justify-end items w-full md:w-1/2">
+                        <button className='flex items-end px-6 py-2 bg-green-400'>Checkout</button>
                     </div>
                 </div>
             </div>
