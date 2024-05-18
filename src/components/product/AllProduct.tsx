@@ -20,7 +20,7 @@ const AllProduct: React.FC<PropsChild> = ({ prod }) => {
             <div className='flex justify-center mx-auto md:justify-start gap-2 flex-wrap w-full'>
                 {/* card */}
                 {prod.map((item, i) => (
-                    <div className="flex  flex-col w-[160px] md:w-[200px] md:max-h-[400px] border" key={i}>
+                    <div className="flex  flex-col w-[180px] md:w-[200px] md:max-h-[400px] border" key={i}>
                         {/* image */}
                         <Link href={`/product/${item.id}`}>
                             <div className="">

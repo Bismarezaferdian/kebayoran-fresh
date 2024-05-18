@@ -7,7 +7,7 @@ const Product = () => {
 
     console.log("ProductDisplay")
     return (
-        <div className=' flex justify-center w-full gap-2 px-6' >
+        <div className=' flex justify-center w-full gap-2 p-2 md:px-6' >
             {/* fillter */}
             <div className="hidden md:flex w-1/6 bg-slate-100" >
                 <FilterProduct />
