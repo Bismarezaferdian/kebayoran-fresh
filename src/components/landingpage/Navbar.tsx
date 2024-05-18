@@ -16,7 +16,7 @@ const Navbar = () => {
       {/* <div className="flex justify-between items-center md:h-full md:w-5/6 bg-red-200"> */}
       <div className="flex justify-between gap-2">
         <h1 className="font-bold text-green-600 text-xl ">kebayoran fresh</h1>
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
       </div>
       <div className="flex gap-2">
         <NavLinks />
