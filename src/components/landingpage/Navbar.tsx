@@ -31,10 +31,13 @@ const Navbar = () => {
         <div className="flex gap-4">
           {/* <ShoppingCartIcon className="w-6 h-6" /> */}
           <Link href={"/cart"}>
-            <FaCartShopping className="text-xl" />
+            <div className="flex justify-center bg-red-600 text-slate-100 rounded-[50%] w-4 h-4 absolute translate-x-4 -translate-y-2 z-0">
+              <span className=" text-xs">3</span>
+            </div>
+            <FaCartShopping className="text-2xl z-10" />
           </Link>
           {/* <UserIcon className="w-6 h-6" /> */}
-          <FaUser className=" md:flex hidden text-xl " />
+          <FaUser className=" md:flex hidden text-2xl " />
 
         </div>
       </div>

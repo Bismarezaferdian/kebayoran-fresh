@@ -6,24 +6,22 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import React from 'react'
-import { category } from "@/data";
+import React from "react";
+import { CategoryProduct } from "@/data";
 import Image from "next/image";
-
 
 interface WindowSize {
   width: number | undefined;
   height: number | undefined;
 }
 
-
-
 const Category = () => {
+  const [data, setData] = useState<CategoryProduct[] | null>();
+  const [error, setError] = useState<string | null>(null);
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined,
     height: undefined,
   });
-
 
   useEffect(() => {
     function handleResize() {
@@ -35,15 +33,33 @@ const Category = () => {
     }
     handleResize();
   }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/category");
+        if (!res.ok) {
+          throw new Error("Someting went wrong !");
+        }
+        const data: CategoryProduct[] = await res.json();
+        setData(data);
+      } catch (error: any) {
+        setError(error);
+      }
+    };
+    getData();
+  }, []);
+
   return (
-    <div className="px-6">
+    <div className="px-6 bg-red-50">
       <div className=" flex justify-between items-center ">
         <h1 className="font-semibold text-base md:text-lg whitespace-nowrap">
           category
         </h1>
       </div>
       {/* slider */}
-      <div className="flex justify-between gap-4 h-auto  ">
+      <div className="  ">
+        {/* <div className="flex justify-between gap-4 h-auto  "> */}
         <Swiper
           loop={false}
           spaceBetween={10}
@@ -52,13 +68,18 @@ const Category = () => {
           pagination={{ clickable: true }}
           modules={[Pagination]}
         >
-          {category.map((item) => (
+          {data?.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="w-full mb-8">
                 <div className="flex justify-center items-center rounded-2xl capitalize font-medium text-zinc-500  w-full p-4 ">
                   <div className="flex flex-col p-4 max-w-48 border rounded-2xl cursor-pointer hover:bg-green-100 hover:border-green-400 transition-all">
                     <div className="flex justify-center  ">
-                      <Image src={item.img} alt={item.title} width={50} height={50} />
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={50}
+                        height={50}
+                      />
                     </div>
                     <div className="flex justify-center">
                       <h1>{item.title}</h1>
@@ -70,9 +91,8 @@ const Category = () => {
           ))}
         </Swiper>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;
