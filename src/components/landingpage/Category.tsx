@@ -9,6 +9,8 @@ import Link from "next/link";
 import React from "react";
 import { CategoryProduct } from "@/data";
 import Image from "next/image";
+import { useGetCategory } from "@/utils/hook/apiCall";
+import { useCategory } from "@/utils/zustand/categoryState";
 
 interface WindowSize {
   width: number | undefined;
@@ -16,12 +18,22 @@ interface WindowSize {
 }
 
 const Category = () => {
+  const { categories, isLoading, error } = useGetCategory();
+  const { getCategory, category } = useCategory();
   const [data, setData] = useState<CategoryProduct[] | null>();
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined,
     height: undefined,
   });
+
+  //SETT TO ZUSTAND
+  useEffect(() => {
+    if (!isLoading && categories && Array.isArray(categories)) {
+      //add category to zustand
+      getCategory(categories); // Only update Zustand if category is valid
+    }
+  }, [categories, getCategory, isLoading]);
 
   useEffect(() => {
     function handleResize() {
@@ -34,21 +46,24 @@ const Category = () => {
     handleResize();
   }, []);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/category");
-        if (!res.ok) {
-          throw new Error("Someting went wrong !");
-        }
-        const data: CategoryProduct[] = await res.json();
-        setData(data);
-      } catch (error: any) {
-        setError(error);
-      }
-    };
-    getData();
-  }, []);
+  console.log(data);
+  //DATA FETHING REPLACE WITH USESWR ON FOLDER UTILS/HOOK
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await fetch("http://localhost:3000/api/category");
+  //       if (!res.ok) {
+  //         throw new Error("Someting went wrong !");
+  //       }
+  //       const data: CategoryProduct[] = await res.json();
+  //       setData(data);
+  //     } catch (error: any) {
+  //       // setError(error);
+  //       console.log(error);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   return (
     <div className="px-6 bg-red-50">
@@ -68,7 +83,7 @@ const Category = () => {
           pagination={{ clickable: true }}
           modules={[Pagination]}
         >
-          {data?.map((item) => (
+          {category?.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="w-full mb-8">
                 <div className="flex justify-center items-center rounded-2xl capitalize font-medium text-zinc-500  w-full p-4 ">
@@ -82,7 +97,7 @@ const Category = () => {
                       />
                     </div>
                     <div className="flex justify-center">
-                      <h1>{item.title}</h1>
+                      <p>{item.title}</p>
                     </div>
                   </div>
                 </div>

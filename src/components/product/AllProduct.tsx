@@ -12,31 +12,31 @@ import useProduct from "@/utils/zustand/product";
 
 const AllProduct = ({ prod }: { prod: ProductType[] }) => {
   const [allProduct, setAllProduct] = useState<ProductType[]>([]);
-
+  // console.log(prod);
   const handleClick = () => {};
-  const { Product, addProduct, updateProduct } = useProduct();
+  const { product, addProduct, updateProduct } = useProduct();
 
   useEffect(() => {
     setAllProduct(prod);
-  }, [prod, addProduct, Product, allProduct]);
+  }, [prod, addProduct, product, allProduct]);
 
   useEffect(() => {
     if (allProduct.length > 0) {
       updateProduct(allProduct);
     }
-    useProduct.persist.rehydrate();
+    // useProduct.persist.rehydrate();
   }, [addProduct, allProduct, updateProduct]);
 
   return (
     <div className="">
-      {!Product.length && <h1 className="bg-red-200">Product Not Found</h1>}
+      {!product.length && <h1 className="bg-red-200">Product Not Found</h1>}
       <div className="flex md:hidden justify-between p-2">
         <h1 className="font-semibold">Product</h1>
         <IoFilterSharp />
       </div>
       <div className="flex justify-center mx-auto md:justify-start gap-2 flex-wrap w-full">
         {/* card */}
-        {Product.map((item, i) => (
+        {product.map((item, i) => (
           <div
             className="flex flex-col h-[300px] w-[180px] md:w-[200px] md:max-h-[400px] border"
             key={i}

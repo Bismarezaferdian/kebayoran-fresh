@@ -1,38 +1,42 @@
-import Product from '@/app/product/page';
+import Product from '@/app/(page)/product/page';
 import { ProductType } from '@/data'
 import { create } from 'zustand'
 import { persist } from "zustand/middleware";
 
 
 interface ProductState {
-  Product: ProductType[]
+  product: ProductType[]
+  newProduct :ProductType[]
   addProduct :(item:ProductType[])=> void
-  updateProduct :(item:ProductType[])=> void
+  updateProduct :(item:ProductType[]| undefined)=> void
 }
 
 const useProduct = create<ProductState>()(
   persist(
   (set,get) => ({
- Product: [],
+ product: [],
+ newProduct:[],
+
+ //tambahkan product jika ada product baru
   addProduct:(item)=>  {
-    const currentState = get().Product;
    // Jika `item` adalah array, sebarkan ke dalam array
-  if (Array.isArray(item)) {
-    set({ Product: [...currentState, ...item] });
-  } else {
-    // Jika `item` adalah satu object produk, tambahkan langsung
-    set({ Product: [...currentState, item] });
-  }
+    set((state)=>({ product: item?
+      [...state.product, ...item.filter((newItem)=>!state.product.some(exits=> exits.id===newItem.id))] :state.product}));
   },
 
+
+//update ketika ada perubahan data product
   updateProduct:(item)=>{
     set(()=>({
-      Product:item
+      product:item
     }))
   }
 }),
 {
-  name:"product"
+  name:"product",
+  onRehydrateStorage: () => {
+    console.log("Status telah direhidrasi dari local storage");
+  },
 }
   )
 )

@@ -5,7 +5,9 @@ import { ProductType, CategoryProduct } from "@/data";
 import React from "react";
 
 const getDataProduct = async () => {
-  const res = await fetch("http://localhost:3000/api/product?");
+  const res = await fetch("http://localhost:3000/api/product?", {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Something went wrong!");
   }

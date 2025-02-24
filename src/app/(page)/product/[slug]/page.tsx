@@ -1,3 +1,4 @@
+import { getSession } from "@/action";
 import SingleProduct from "@/components/product/SingleProduct";
 import useProduct from "@/utils/zustand/product";
 import React from "react";
@@ -13,12 +14,16 @@ const getDataProduct = async (slug: string) => {
 };
 
 const Product = async ({ params }: { params: { slug: string } }) => {
+  const { userId } = await getSession();
+  //get data from ssr
   const product = await getDataProduct(params.slug);
-  const { addProduct } = useProduct();
-  addProduct(product);
+  // //destructuring from product zustand
+  // const { addProduct } = useProduct();
+  // //add data ke zustand
+  // addProduct(product);
   return (
     <div>
-      <SingleProduct product={product} />
+      <SingleProduct product={product} userId={userId} />
     </div>
   );
 };

@@ -11,7 +11,6 @@ export async function GET(
   {
   try {
     const {id}= params
-console.log(id)
     const category= await prisma.category.findUnique({
         where: {
           id: id,

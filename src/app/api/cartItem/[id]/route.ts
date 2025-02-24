@@ -1,20 +1,18 @@
 import { prisma } from "@/utils/conect"
 import { NextRequest } from "next/server"
 
-export const PUT = async (req:NextRequest, {params}:{params:{id:string}})=>{
+export const GET = async (req:NextRequest, {params}:{params:{id:string}})=>{
 try {
     const {id}= params
-    const data =await req.json()
-    const updateCartItem= prisma.cartItem.update({
+    const cartItem=await prisma.cartItem.findMany({
         where:{
-            id:id
-        },
-        data:data
+            cartId:id
+        }
     })
-
+    return new Response(JSON.stringify(cartItem), { status: 200 });
  
 } catch (error) {
-    
+    return new Response(JSON.stringify({message:"server error"}), { status: 500 });
 }
 };
 

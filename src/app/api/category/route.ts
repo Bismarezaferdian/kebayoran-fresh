@@ -24,7 +24,6 @@ export async function POST(req: Response) {
   try {
     // const body:CategoryApi = await req.json();
     const body = await req.json();
-    console.log(body.length)
     if(body.length > 0){
 
       await prisma.category.createMany({

@@ -9,19 +9,23 @@ type Banner = {
 
 type Banners = Banner[]
 
-type Option= {
-    title:string,
-    price:number,
-    weight:number
-}
+type Option = {
+    id: string;
+    createdAt: string;
+    title: string;
+    price: number;
+    weight: number;
+    prodSlug: string;
+};
 
 export type ProductType = {
-    id: number,
+    id: string,
     title: string,
     desc?: string,
     img: string,
     slug:string,
     catSlug:string,
+    isFeatured:boolean,
     price: number,
     weight?: number,
     category: String,
@@ -36,6 +40,49 @@ export type CategoryProduct = {
     slug: string
     product:ProductType[]
 }
+
+export type FormState = {
+    error?: {
+      [key: string]: string[]; // Example: { email: ["error message"] }
+    };
+    message?: string;
+  };
+
+  export type DataSingleProd = {
+    prodId: string;
+    optionId?: string;
+    userId: string;
+    quantity: number;
+  }
+
+  //dipakai saat input ke cartitems
+  export type CartItemInput = {
+    prodId: string;
+    optionId?: string;
+    userId: string;
+    quantity: number;
+  };
+  
+  export type CartItem={
+    id      : string;
+    quantity: number;
+    optionId :string;
+    prodId   :string
+    cartId   :string
+    product :ProductType;
+    option:Option;
+    // cart     :Cart
+  }
+
+  export type Cart ={
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: string;
+    cartItems: CartItem[];
+  }
+
+//API
 
 export type ProductApi = {
     id: number,
@@ -59,6 +106,9 @@ export type CategoryApi = {
     product:ProductApi[]
 }
 
+
+  
+  
 
 
 type Categories = CategoryProduct[]
@@ -91,11 +141,13 @@ export type Products = ProductType[]
 
 export const ProductCarts: Products = [
     {
-        id: 1,
+        id: "1",
         category: "vegetables",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. In quibusdam similique, quod excepturi aperiam deleniti dolor ex qui voluptatibus adipisci. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos dolore enim quos voluptas, ad voluptatibus eveniet beatae iste debitis explicabo.",
         title: "Ayam Potong Segar",
         slug: "ayam potong",
+        isFeatured
+:true,
         catSlug:"fish",
         img: "/product/ayam.jpeg",
         price: 12000,
@@ -122,10 +174,13 @@ export const ProductCarts: Products = [
 
     },
     {
-        id: 2,
+        id: "2",
         category: "vegetables",
         title: "Bawang Putih",
         slug:"bawang putih",
+        isFeatured
+:true,
+
         catSlug:"fish",
         img: "/product/bawangWhite.jpeg",
         price: 11000,
@@ -151,9 +206,12 @@ export const ProductCarts: Products = [
 
     },
     {
-        id: 3,
+        id: "3",
         category: "vegetables",
         title: "Bayam ",
+        isFeatured
+:true,
+
         slug:"bayam",
         catSlug:"fish",
         img: "/product/bayam.jpeg",
@@ -179,7 +237,7 @@ export const ProductCarts: Products = [
 
 export const ProductDisplay: Products = [
     {
-        id: 1,
+        id: "1",
         category: "vegetables",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. In quibusdam similique, quod excepturi aperiam deleniti dolor ex qui voluptatibus adipisci. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos dolore enim quos voluptas, ad voluptatibus eveniet beatae iste debitis explicabo.",
         title: "Ayam Potong Segar",
@@ -187,6 +245,9 @@ export const ProductDisplay: Products = [
         catSlug:"fish",
         img: "/product/ayam.jpeg",
         price: 12000,
+        isFeatured
+:true,
+
         weight: 250,
         // option: [
         //     {
@@ -209,12 +270,15 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 2,
+        id: "2",
         category: "vegetables",
         title: "Bawang Putih",
         slug: "bawang putih",
         catSlug:"fish",
         img: "/product/bawangWhite.jpeg",
+        isFeatured
+:true,
+
         price: 11000,
         weight: 250,
         // option: [
@@ -238,11 +302,14 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 3,
+        id: "3",
         category: "vegetables",
         title: "Bayam ",
         slug:"bayam",
         catSlug:"fish",
+        isFeatured
+:true,
+
         img: "/product/bayam.jpeg",
         price: 12000,
         weight: 250,
@@ -263,13 +330,16 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 4,
+        id: "4",
         category: "vegetables",
         title: "Bayam ",
         slug:"bayan",
         catSlug:"fish",
         img: "/product/bombai.jpeg",
         price: 12000,
+        isFeatured
+:true,
+
         weight: 250,
         // option: [
         //     {
@@ -288,10 +358,13 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 5,
+        id: "5",
         category: "vegetables",
         title: "Bayam ",
         slug:"basan",
+        isFeatured
+:true,
+
         catSlug:"fish",
         img: "/product/bombai.jpeg",
         price: 12000,
@@ -313,13 +386,16 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 6,
+        id: "6",
         category: "vegetables",
         title: "Bayam ",
         slug:"basreng",
         catSlug:"fish",
         img: "/product/bombai.jpeg",
         price: 12000,
+        isFeatured
+:true,
+
         weight: 250,
         // option: [
         //     {
@@ -338,13 +414,16 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 7,
+        id: "7",
         category: "vegetables",
         title: "Bayam ",
         slug:"baseng",
         catSlug:"fish",
         img: "/product/bombai.jpeg",
         price: 12000,
+        isFeatured
+:true,
+
         weight: 250,
         // option: [
         //     {
@@ -363,10 +442,13 @@ export const ProductDisplay: Products = [
 
     },
     {
-        id: 8,
+        id:" 8",
         category: "vegetables",
         title: "Bayam ",
         slug:"bassreng",
+        isFeatured
+:true,
+
         catSlug:"fish",
         img: "/product/bombai.jpeg",
         price: 12000,
@@ -392,10 +474,13 @@ export const ProductDisplay: Products = [
 
 export const featureProducts: Products = [
     {
-        id: 1,
+        id: "1",
         category: "vegetables",
         title: "Ayam Potong Segar",
         slug:"ayam potong segar ",
+        isFeatured
+:true,
+
         catSlug:"fish",
         img: "/product/ayam.jpeg",
         price: 12000,
@@ -421,8 +506,11 @@ export const featureProducts: Products = [
 
     },
     {
-        id: 2,
+        id: "2",
         category: "vegetables",
+        isFeatured
+:true,
+
         title: "Bawang Putih",
         slug:"bawang putih",
         catSlug:"fish",
@@ -449,10 +537,13 @@ export const featureProducts: Products = [
 
     },
     {
-        id: 3,
+        id: "3",
         category: "vegetables",
         title: "Bayam ",
         slug:"bacan",
+        isFeatured
+:true,
+
         catSlug:"fish",
         img: "/product/bayam.jpeg",
         price: 12000,
@@ -473,10 +564,13 @@ export const featureProducts: Products = [
 
     },
     {
-        id: 4,
+        id: "4",
         category: "vegetables",
         title: "Bayam ",
         slug:"bass",
+        isFeatured
+:true,
+
         catSlug:"fish",
         img: "/product/bombai.jpeg",
         price: 12000,
@@ -497,8 +591,11 @@ export const featureProducts: Products = [
 
     },
     {
-        id: 5,
+        id: "5",
         category: "vegetables",
+        isFeatured
+:true,
+
         title: "Bayam ",
         slug:"bayam",
         catSlug:"fish",
@@ -521,8 +618,10 @@ export const featureProducts: Products = [
 
     },
     {
-        id: 6,
+        id: "6",
         category: "vegetables",
+        isFeatured:true,
+
         title: "Bayam ",
         slug:"bayan",
         catSlug:"fish",
@@ -550,28 +649,28 @@ export const featureProducts: Products = [
 
 // export const category: Categories = [
 //     {
-//         id: 1,
+//         id: "1",
 //         title: "fishs",
 //         img: "/category/fish.png"
 //     },
 //     {
-//         id: 2,
+//         id: "2",
 //         title: "vegetable",
 //         img: "/category/cabbage.png"
 //     },
 //     {
-//         id: 3,
+//         id: "3",
 //         title: "fruits",
 //         img: "/category/watermelon.png"
 
 //     },
 //     {
-//         id: 4,
+//         id: "4",
 //         title: "chicken",
 //         img: "/category/chicken.png"
 //     },
 //     {
-//         id: 5,
+//         id: "5",
 //         title: "meats",
 //         img: "/category/beef.png"
 
@@ -590,5 +689,6 @@ export const featureProducts: Products = [
 //     },
 
 // ]
+
 
 
