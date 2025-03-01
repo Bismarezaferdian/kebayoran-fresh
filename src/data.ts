@@ -9,7 +9,7 @@ type Banner = {
 
 type Banners = Banner[]
 
-type Option = {
+type option = {
     id: string;
     createdAt: string;
     title: string;
@@ -29,7 +29,7 @@ export type ProductType = {
     price: number,
     weight?: number,
     category: String,
-    option?: Option[],
+    option?: option[],
 }
 
 
@@ -70,7 +70,7 @@ export type FormState = {
     prodId   :string
     cartId   :string
     product :ProductType;
-    option:Option;
+    Option:option;
     // cart     :Cart
   }
 
@@ -83,6 +83,14 @@ export type FormState = {
   }
 
 //API
+
+export type SessionData ={
+    userId?: string|null;
+    email?:  string|null;
+    userName?: string|null;
+    isPro?: boolean;
+    isLoggedIn: boolean;
+  }
 
 export type ProductApi = {
     id: number,

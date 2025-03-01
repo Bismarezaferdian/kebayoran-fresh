@@ -1,9 +1,18 @@
-import { Cart, CategoryProduct, DataSingleProd } from "@/data"
+import { Cart, CategoryProduct, DataSingleProd, SessionData } from "@/data"
 import { promises } from "dns"
 import useSWR from "swr"
 
 const fether = (url:string)=> fetch(url).then((res)=>res.json())
 
+export const useGetSession= ()=>{
+    const {
+        data:session,
+        isLoading,
+        error
+    }= useSWR<SessionData>(`${process.env.NEXT_PUBLIC_URL}/api/session`,fether)
+
+    return {session,isLoading,error}
+}
 export const useGetCategory= ()=>{
     const {
         data:categories,
@@ -37,7 +46,7 @@ export const useGetCart =  (id:string)=>{
     return {carts, isLoading, mutate, error}
 }
 
-export const addToCartHook = async(item: DataSingleProd)=>{
+export const addToCartItems = async(item: DataSingleProd)=>{
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/cartItem`,
     {

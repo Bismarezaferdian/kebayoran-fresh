@@ -6,6 +6,7 @@ import Provider from "@/components/darkmode/Provider";
 import Footer from "@/components/landingpage/Footer";
 import Navbar from "@/components/landingpage/Navbar/Navbar";
 import ToastProvider from "@/components/notification/ToastProvider";
+import StoreProviders from "./providers/StoreProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +25,13 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <Provider> */}
         {/* <ToastProvider> */}
-        <ToastProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </ToastProvider>
+        <StoreProviders>
+          <ToastProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </ToastProvider>
+        </StoreProviders>
         {/* </Provider> */}
       </body>
     </html>

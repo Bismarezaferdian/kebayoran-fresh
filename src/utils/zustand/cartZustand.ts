@@ -18,10 +18,10 @@
 
 // /src/store/cartZustand.ts
 import { create } from 'zustand'
-import { CartItemInput, DataSingleProd, ProductType } from "@/data";
-import {  addToCartHook } from "../hook/apiCall";
+import { Cart, CartItem, CartItemInput, DataSingleProd, ProductType } from "@/data";
+import {   addToCartItems } from "../hook/apiCall";
 import { persist } from "zustand/middleware";
-import { CartItem } from '@prisma/client';
+import { errorMessage, successMessage } from '../notification';
 
 
 interface ProductState {
@@ -34,18 +34,21 @@ interface ProductState {
 }
 
 //interface sesuai didatabase
-interface Cart{
+interface cartZustand{
     id: string;
     createdAt: string;
     updatedAt: string;
     userId: string;
-    cartItems: CartItemInput[];
+    cartItems: CartItem[];
     addToCart: (item: DataSingleProd) => void;
+    updateCart:(item: Cart)=> void
+    resetCart:()=>void
+    
 }
 
 
 // This is a store creator function, not a hook
-const useCartStore= create<Cart>()(
+const useCartStore= create<cartZustand>()(
 persist(
   (set,get)=>({
     //sesuikan dengan yang ada di database
@@ -71,22 +74,35 @@ persist(
   })
 },
 
+
 addToCart: async (item:DataSingleProd)=>{
 try {
-  //const {quatitiy,optionId.prodId,cartId}= items
-  // Assume addToCartHook is a function that handles adding the item to the backend
-  const dataProduct = await addToCartHook(item);
-  // const dataProductInStorage= get().Product
-  // Benar: Update state menggunakan set
-  console.log(dataProduct)
-  set((state) => ({
-    cartItems:dataProduct
-    // cartItems:dataProduct
-    // Product:dataProduct
+  //add cartItem to backened
+  const dataCartItem = await addToCartItems(item);
+  //cek if dataCartItems emty return error
+  if (!dataCartItem) {
+    errorMessage("Invalid cart data from backend")
+    throw new Error("Invalid cart data from backend");
+  }
+  //if success fetch frombackend update cartItem in local
+  set(() => ({
+    cartItems:dataCartItem
   }));
+successMessage("success add to cart")
 } catch (error) {
-  console.log(error)
+  errorMessage(`${error}`)
+  console.error(error)
 }
+},
+
+updateCart:(item:Cart)=>{
+  set(()=>({
+      id:item?.id,
+      createdAt:item?.createdAt,
+      updatedAt:item?.updatedAt,
+      userId:item?.userId,
+      cartItems:[...item.cartItems],
+  }))
 },
 
 

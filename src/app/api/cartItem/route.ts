@@ -74,7 +74,7 @@ export const POST = async (req: NextRequest) => {
 
       const cartItemsForUpdateUi= await prisma.cartItem.findMany({
         where:{
-          cartId:newCart.id
+          cartId:cartId
         },
           include:{
             product:true,
@@ -130,7 +130,7 @@ export const POST = async (req: NextRequest) => {
 
       const cartItemsForUpdateUi= await prisma.cartItem.findMany({
         where:{
-          cartId:userWithCart?.Cart.id
+          cartId:cartId
         },
           include:{
             product:true,
@@ -152,7 +152,7 @@ export const POST = async (req: NextRequest) => {
 
     const cartItemsForUpdateUi= await prisma.cartItem.findMany({
       where:{
-        cartId:userWithCart?.Cart?.id
+        cartId:cartId
       },
         include:{
           product:true,

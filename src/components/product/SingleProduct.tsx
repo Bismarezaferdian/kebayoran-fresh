@@ -1,12 +1,12 @@
 "use client";
-import { DataSingleProd, ProductType } from "@/data";
+import { CartItemInput, DataSingleProd, ProductType } from "@/data";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import NewProducts from "../landingpage/NewProduct";
 import { useRouter } from "next/navigation";
 import { successMessage } from "@/utils/notification";
 import useCartStore from "@/utils/zustand/cartZustand";
-import { addToCartHook } from "@/utils/hook/apiCall";
+// import { useGetSession } from "@/utils/hook/apiCall";
 
 // Define props interface
 interface SingleProductProps {
@@ -15,23 +15,18 @@ interface SingleProductProps {
 }
 
 const SingleProduct: React.FC<SingleProductProps> = ({ product, userId }) => {
+  // const { session, error } = useGetSession();
+  // console.log(session);
   const router = useRouter();
   const { addToCart } = useCartStore();
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [price, setPrice] = useState<number>();
-  const [dataSingleProd, setDataSingleProd] = useState<DataSingleProd>({
-    // cartItems:[
-
-    //product
-    //option
-    // ]
+  const [dataSingleProd, setDataSingleProd] = useState<CartItemInput>({
     prodId: product.id,
     optionId: null,
     userId: "",
     quantity: 0,
   });
-
-  console.log(product);
 
   const getValue = (e: any) => {
     const idOptoin = e.target.value;

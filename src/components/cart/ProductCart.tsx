@@ -3,23 +3,31 @@ import Image from "next/image";
 import React from "react";
 import { ProductCarts } from "@/data";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import useCartStore from "@/utils/zustand/cartZustand";
 
 const ProductCart = () => {
+  const { cartItems } = useCartStore();
+  console.log(cartItems);
   return (
     <div className=" md:container mx-auto p-2 md:px-6">
-      {ProductCarts.map((item, i) => (
+      {cartItems.map((item, i) => (
         <div className="p-2 border-b-2 flex" key={i}>
           {/* image */}
           <div className=" w-fit px-1">
-            <Image src={item.img} alt="" width={120} height={120} />
+            <Image src={item.product.img} alt="" width={120} height={120} />
           </div>
           {/* content */}
           <div className="flex justify-between px-2 w-full">
             {/* title */}
             <div className="flex flex-col justify-between">
               <div className="">
-                <h1 className="font-semibold">{item.title}</h1>
-                <p className="text-sm">{item.weight} gr</p>
+                <h1 className="font-semibold">{item.product.title}</h1>
+                <p className="text-sm">
+                  {item.optionId != null
+                    ? item?.Option?.weight
+                    : item.product.weight}{" "}
+                  gr
+                </p>
               </div>
               {/* qty */}
               <div className="flex">
@@ -27,7 +35,7 @@ const ProductCart = () => {
                   -
                 </button>
                 <p className="flex justify-center px-2 border-none items-center  bg-green-200 mx-2">
-                  2
+                  {item.quantity}
                 </p>
                 <button className=" px-2 border  text-gray-900 ">+</button>
               </div>
@@ -35,7 +43,7 @@ const ProductCart = () => {
             {/* icon & amount */}
             <div className="flex flex-col justify-between py-2 items-center">
               <MdOutlineDeleteForever className="text-2xl cursor-pointer text-red-700" />
-              <p>Rp.{item.price}</p>
+              <p>Rp.{item.product.price}</p>
             </div>
           </div>
         </div>

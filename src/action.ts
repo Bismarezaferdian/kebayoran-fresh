@@ -1,12 +1,12 @@
 "use server";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
-import { SessionData, defaultSession, sessionOptions } from "./lib";
+import {  defaultSession, sessionOptions } from "./lib";
 import { LoginSchema, RegisterSchema } from "./utils/zod";
 import { prisma } from "./utils/conect";
 import { compare, hashSync } from "bcrypt-ts";
 import { redirect } from "next/navigation";
-import { FormState } from "./data";
+import { FormState, SessionData } from "./data";
 import ResetAll from "./utils/zustand/resetState";
 
 

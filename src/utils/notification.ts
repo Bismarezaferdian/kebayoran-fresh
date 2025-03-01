@@ -19,4 +19,18 @@ export const successMessage = (message:string) => {
     //   onClose: onClose,
     });
   };
+export const errorMessage = (message:string) => {
+    // window.alert("Invalid Credentials");
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    //   onClose: onClose,
+    });
+  };
   

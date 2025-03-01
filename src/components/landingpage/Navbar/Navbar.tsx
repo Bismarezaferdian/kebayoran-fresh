@@ -6,6 +6,7 @@ import NavLinks from "./NavLink";
 import NavbarMobile from "./NavbarMobile";
 import { getSession } from "@/action";
 import { NavUser } from "./NavUser";
+import useCartStore from "@/utils/zustand/cartZustand";
 
 const Navbar = async () => {
   const session = await getSession();
@@ -28,21 +29,14 @@ const Navbar = async () => {
           placeholder="Search"
           className="bg-gray-300 rounded-full w-full h-8 px-4"
         />
+        {/* icon for nav user */}
         <div className="flex justify-between items-center  gap-4">
-          {/* <ShoppingCartIcon className="w-6 h-6" /> */}
-          <Link href={"/cart"}>
-            <div className="flex justify-center bg-red-600 text-slate-100 rounded-[50%] w-4 h-4 absolute translate-x-4 -translate-y-2 z-0">
-              <span className=" text-xs">3</span>
-            </div>
-            <FaCartShopping className="text-2xl z-10" />
-          </Link>
-          {/* <UserIcon className="w-6 h-6" /> */}
           <div className="">
             <NavUser user={plainSessionData} />
           </div>
         </div>
       </div>
-      {/* </div> */}
+      {/* for mobile viewed */}
       <div className="fixed bottom-0 h-fit py-4 px-8 md:hidden w-full bg-neutral-50 z-40">
         <NavbarMobile />
       </div>

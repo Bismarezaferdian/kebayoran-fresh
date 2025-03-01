@@ -1,13 +1,11 @@
 "use client";
 import { logout } from "@/action";
-import { SessionData } from "@/lib";
-import { useGetCart } from "@/utils/hook/apiCall";
+import { SessionData } from "@/data";
 import useCartStore from "@/utils/zustand/cartZustand";
 import resetAll from "@/utils/zustand/resetState";
-import ResetAll from "@/utils/zustand/resetState";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { FaUser } from "react-icons/fa6";
+import { FaCartShopping, FaUser } from "react-icons/fa6";
 
 // Handler hook for when Outside click dropdown close
 export const useClickOutside = (handler: () => void) => {
@@ -37,12 +35,8 @@ type props = {
 // Handler hook for when Outside click dropdown close End Code====>>
 
 export const NavUser = (props: props) => {
-  const { carts, error, isLoading, mutate } = useGetCart(props?.user?.userId);
-
-  console.log(carts);
-  const { resetCart } = useCartStore();
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { cartItems } = useCartStore();
 
   const domNode = useClickOutside(() => {
     setDropdownOpen(false);
@@ -50,18 +44,25 @@ export const NavUser = (props: props) => {
   });
 
   const handleLogout = (): void => {
+    //reset state local from resetAll
     resetAll();
     logout();
   };
-
-  // if (props) {
-  //   console.log(props);
-  // }
 
   return (
     <section className=" dark:bg-dark">
       <div className="container">
         <div className="flex flex-wrap">
+          <div className="flex justify-between items-center  gap-4">
+            <Link href={"/cart"}>
+              <div className="flex justify-center bg-red-600 text-slate-100 rounded-[50%] w-4 h-4 absolute translate-x-4 -translate-y-2 z-0">
+                <span className=" text-xs">
+                  {cartItems ? cartItems.length : 0}
+                </span>
+              </div>
+              <FaCartShopping className="text-2xl z-10" />
+            </Link>
+          </div>
           <div ref={domNode} className="w-full sm:w-1/2 lg:w-1/4">
             <div className=" text-center">
               <div className="relative inline-block text-left">

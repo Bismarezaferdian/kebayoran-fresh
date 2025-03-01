@@ -1,5 +1,5 @@
 "use client";
-import { SessionData } from "@/lib";
+import { SessionData } from "@/data";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +10,6 @@ type props = {
 
 const NavLinks = (props: props) => {
   const path = usePathname();
-  console.log(path);
   return (
     <div>
       <div className="hidden md:flex gap-10  ">
